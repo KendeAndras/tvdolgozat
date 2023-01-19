@@ -3,28 +3,34 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Television;
+use App\Models\Type;
+use Illuminate\Support\Facades\DB;
 
 class TvController extends Controller
 {
-    public function listTvs() {
-        $televisions= DB::table( "televisions" )
+    public function addTv() {
+
+
+        $televisions = DB::table( "televisions" )
         ->join( "types", "types.id", "=", "televisions.type_id")->get();
+
+        return view( "/addTv" );
     }
 
-    public function newTv(Request $request) {
-        
+    public function store(Request $request){
+        $television = new Television;
+        $type = new Type;
+
+        $television->name = $request->name;
+        $television->size = $request->size;
+        $type->type = $request->type;
+
+        $television->save();
+        $type->save();
+
+        return redirect( "/" );
     }
 
-    public function getPerfumes() {
-        
-    }
-
-    public function getPerfumes() {
-        
-    }
-
-    public function getPerfumes() {
-        
-    }
 }
 

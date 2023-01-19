@@ -9,14 +9,15 @@ class Television extends Model
 {
     use HasFactory;
         
-
-            protected $fillable = [
-                'name',
-                'size',
-                'type_id'
-            ];
+    public $timestamps = false;
+    
+    protected $fillable = [
+        'name',
+        'size',
+        'type_id'
+    ];
 
             
-            return $this->belongsTo(Type::class, 'type_id');
-    }
+            //return $this->belongsTo(Type::class, 'type_id');
+ }
 
